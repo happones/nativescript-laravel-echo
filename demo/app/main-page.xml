@@ -1,6 +1,45 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded" class="page"
   xmlns:ui="nativescript-laravel-echo">
-  <StackLayout class="p-20">
-    <Label text="{{ message }}" class="t-20 text-center c-black" textWrap="true"/>
-  </StackLayout>
+  <ScrollView>
+    <StackLayout class="p-20">
+      <StackLayout class="form">
+        <StackLayout>
+          <Label text="{{ broadcast?'pusher':'socket.io' }}"></Label>
+          <Switch checked="{{ broadcast }}"/>
+        </StackLayout>
+        <StackLayout visibility="{{ ! broadcast? 'collapsed':'visible' }}">
+          <Label text="AuthEndPoint"></Label>
+          <TextField text="{{ endpoint }}" class="input input-border" hint="your auth url without /broadcasting/url"></TextField>
+        </StackLayout>
+        <StackLayout visibility="{{ ! broadcast? 'collapsed':'visible' }}">
+          <Label text="ApiKey"></Label>
+          <TextField text="{{ key }}" class="input input-border" hint="your pusher key"></TextField>
+        </StackLayout>
+        <StackLayout visibility="{{ broadcast? 'collapsed':'visible' }}">
+          <Label text="Host"></Label>
+          <TextField text="{{ host }}" class="input input-border" hint="http://host:6001"></TextField>
+        </StackLayout>
+        <StackLayout>
+          <Label text="Channel"></Label>
+          <TextField text="{{ channel }}" class="input input-border"></TextField>
+        </StackLayout>
+        <StackLayout>
+          <Label text="Listen Event"></Label>
+          <TextField text="{{ event }}" class="input input-border"></TextField>
+        </StackLayout>
+        <StackLayout>
+          <ListPicker loaded="onListPickerLoaded" items="{{ types }}" selectedIndex="{{ index }}"  />
+        </StackLayout>
+        <StackLayout visibility="{{ index === 0 ? 'collapsed':'visible' }}">
+          <Label text="Your Token"></Label>
+          <TextField text="{{ token }}" class="input input-border"></TextField>
+        </StackLayout>
+        <StackLayout>
+          <StackLayout>
+            <Button text="Connect a Channel" tap="onTap" class="btn btn-primary"></Button>
+          </StackLayout>
+        </StackLayout>
+      </StackLayout>
+    </StackLayout>
+  </ScrollView>
 </Page>

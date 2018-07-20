@@ -8,3 +8,8 @@ export function pageLoaded(args: observable.EventData) {
     let page = <pages.Page>args.object;
     page.bindingContext = new HelloWorldModel();
 }
+
+export function onTap(args) {
+    let page = args.object;
+    page.bindingContext.connect();
+}

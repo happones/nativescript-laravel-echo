@@ -1,39 +1,80 @@
-# Your Plugin Name
+# NativeScript Laravel-Echo
 
-Add your plugin badges here. See [nativescript-urlhandler](https://github.com/hypery2k/nativescript-urlhandler) for example.
+This is a [laravel-echo](https://github.com/laravel/echo/blob/master/src/channel/pusher-channel.ts) plugin for native applications made with nativescript
 
-Then describe what's the purpose of your plugin. 
+For more information read [Laravel Broadcast](https://laravel.com/docs/master/broadcasting). 
 
-In case you develop UI plugin, this is where you can add some screenshots.
+## Prerequisites / Requirements
 
-## (Optional) Prerequisites / Requirements
+Necesary api authentication in your laravel backend application.
 
-Describe the prerequisites that the user need to have installed before using your plugin. See [nativescript-firebase plugin](https://github.com/eddyverbruggen/nativescript-plugin-firebase) for example.
+**Modify the file where the following line `Broadcast::routes()`**
+
+Example in `app/Providers/BroadcastServiceProvider.php`
+
+```php
+class BroadcastServiceProvider extends ServiceProvider
+{
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        Broadcast::routes(['middleware' => 'auth:api']);
+        require base_path('routes/channels.php');
+    }
+}
+```
 
 ## Installation
 
 Describe your plugin installation steps. Ideally it would be something like:
 
 ```javascript
-tns plugin add <your-plugin-name>
+tns plugin add nativescript-laravel-echo
 ```
 
 ## Usage 
 
 Describe any usage specifics for your plugin. Give examples for Android, iOS, Angular if needed. See [nativescript-drop-down](https://www.npmjs.com/package/nativescript-drop-down) for example.
 	
-	```javascript
-    Usage code snippets here
-    ```)
+**Javascript**	
+```javascript
+const TnsEcho = require('nativescript-laravel-echo').TnsEcho
 
-## API
+const Echo = new TnsEcho(options)
 
-Describe your plugin methods and properties here. See [nativescript-feedback](https://github.com/EddyVerbruggen/nativescript-feedback) for example.
+Echo.channel('YourChannel').listen('Event')
+```
+    
+    
+**TypeScript**	  
+```javascript
+import { TnsEcho } from 'nativescript-laravel-echo';
+
+private Echo: TnsEcho;
+
+this.Echo = new TnsEcho(options)
+
+Echo.channel('YourChannel').listen('Event')
+```
+
+## Options
+
+These are each of the parameters that can go in the object options.
     
 | Property | Default | Description |
 | --- | --- | --- |
-| some property | property default value | property description, default values, etc.. |
-| another property | property default value | property description, default values, etc.. |
+| broadcaster | pusher | Driver for broadcast pusher or socket.io |
+| host | null | Your host only socket.io |
+| authEndpoint | /broadcasting/auth | Your auth endpoint only for Pusher |
+| key | null | Your api key of Pusher App |
+| cluster | null | Your cluster of Pusher App |
+| auth | auth:{headers:{}} | Necesary in private an presence channel's with Authorization header |
+| debug | false | Enable debug only socket.io broadcaster |
+| namespace | App.Events | The namespace backend events |
     
 ## License
 
