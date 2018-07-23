@@ -38,15 +38,37 @@ tns plugin add nativescript-laravel-echo
 
 ## Usage 
 
-Describe any usage specifics for your plugin. Give examples for Android, iOS, Angular if needed. See [nativescript-drop-down](https://www.npmjs.com/package/nativescript-drop-down) for example.
-	
+```php
+namespace App\Events;
+
+use Illuminate\Broadcasting\Channel;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Broadcasting\PresenceChannel;
+use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+
+class Event implements ShouldBroadcast
+{
+    /**
+     * Information about the shipping status update.
+     *
+     * @var string
+     */
+    public $data; //data show in console.dir as data
+}
+```
+
+
 **Javascript**	
 ```javascript
 const TnsEcho = require('nativescript-laravel-echo').TnsEcho
 
 const Echo = new TnsEcho(options)
 
-Echo.channel('YourChannel').listen('Event')
+Echo.channel('YourChannel').listen('Event', e => {
+    console.dir(e)
+})
 ```
     
     
@@ -58,7 +80,9 @@ private Echo: TnsEcho;
 
 this.Echo = new TnsEcho(options)
 
-Echo.channel('YourChannel').listen('Event')
+Echo.channel('YourChannel').listen('Event', e => {
+    console.dir(e)
+})
 ```
 
 ## Options
