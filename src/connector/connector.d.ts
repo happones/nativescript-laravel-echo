@@ -9,6 +9,7 @@ export declare abstract class Connector {
     abstract privateChannel(channel: string): Channel;
     abstract presenceChannel(channel: string): PresenceChannel;
     abstract leave(channel: string): void;
+    abstract leaveChannel(channel: string): void;
     abstract socketId(): string;
     abstract disconnect(): void;
 }

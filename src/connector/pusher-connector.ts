@@ -120,6 +120,17 @@ export class PusherConnector extends Connector {
     }
 
     /**
+     * Leave the given channel.
+     */
+    leaveChannel(name: string): void {
+        if (this.channels[name]) {
+            this.channels[name].unsubscribe();
+
+            delete this.channels[name];
+        }
+    }
+
+    /**
      * Get the socket ID for the connection.
      *
      * @return {string}

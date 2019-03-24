@@ -69,6 +69,10 @@ const Echo = new TnsEcho(options)
 Echo.channel('YourChannel').listen('Event', e => {
     console.dir(e)
 })
+
+setTimeout(() => {
+    Echo.socketId();
+}, 500)//half second for get socket id, only socket.io
 ```
     
     
@@ -83,6 +87,10 @@ this.Echo = new TnsEcho(options)
 Echo.channel('YourChannel').listen('Event', e => {
     console.dir(e)
 })
+
+setTimeout(() => {
+    Echo.socketId();
+}, 500)//half second for get socket id, only socket.io
 ```
 
 ## Options

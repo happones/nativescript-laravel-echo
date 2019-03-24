@@ -88,6 +88,11 @@ export abstract class Connector {
     abstract leave(channel: string): void;
 
     /**
+     * Leave the given channel.
+     */
+    abstract leaveChannel(channel: string): void;
+
+    /**
      * Get the socket_id of the connection.
      *
      * @return {string}

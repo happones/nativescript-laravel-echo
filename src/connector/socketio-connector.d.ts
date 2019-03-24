@@ -9,6 +9,7 @@ export declare class SocketIoConnector extends Connector {
     privateChannel(name: string): SocketIoPrivateChannel;
     presenceChannel(name: string): SocketIoPresenceChannel;
     leave(name: string): void;
+    leaveChannel(name: string): void;
     socketId(): string;
     disconnect(): void;
 }

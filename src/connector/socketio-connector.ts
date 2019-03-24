@@ -1,6 +1,8 @@
 import { Connector } from './connector';
 import { SocketIoChannel, SocketIoPrivateChannel, SocketIoPresenceChannel } from './../channel';
-import * as SocketIO from "nativescript-socket.io"
+import * as SocketIO from "nativescript-socket.io";
+import * as application from 'tns-core-modules/application';
+
 /**
  * This class creates a connnector to a Socket.io server.
  */
@@ -26,7 +28,7 @@ export class SocketIoConnector extends Connector {
      */
     connect(): void {
         if (this.options.debug) {
-            SocketIO.enableDebug()
+            SocketIO.enableDebug();
         }
         this.socket = SocketIO.connect(this.options.host, this.options);
 
@@ -119,12 +121,28 @@ export class SocketIoConnector extends Connector {
     }
 
     /**
+     * Leave the given channel.
+     */
+    leaveChannel(name: string): void {
+        if (this.channels[name]) {
+            this.channels[name].unsubscribe();
+
+            delete this.channels[name];
+        }
+    }
+
+    /**
      * Get the socket ID for the connection.
      *
      * @return {string}
      */
     socketId(): string {
-        return this.socket.id;
+        let socketId;
+        if (application.android)
+            socketId = this.socket.android.id();
+        else
+            socketId = this.socket.ios.sid;
+        return socketId;
     }
 
     /**

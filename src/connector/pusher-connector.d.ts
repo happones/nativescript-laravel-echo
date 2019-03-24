@@ -9,6 +9,7 @@ export declare class PusherConnector extends Connector {
     privateChannel(name: string): PusherChannel;
     presenceChannel(name: string): PresenceChannel;
     leave(name: string): void;
+    leaveChannel(name: string): void;
     socketId(): string;
     disconnect(): void;
 }

@@ -8,6 +8,7 @@ export declare class NullConnector extends Connector {
     privateChannel(name: string): NullPrivateChannel;
     presenceChannel(name: string): PresenceChannel;
     leave(name: string): void;
+    leaveChannel(name: string): void;
     socketId(): string;
     disconnect(): void;
 }
