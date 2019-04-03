@@ -70,9 +70,7 @@ Echo.channel('YourChannel').listen('Event', e => {
     console.dir(e)
 })
 
-setTimeout(() => {
-    Echo.socketId();
-}, 500)//half second for get socket id, only socket.io
+Echo.socketId(); // get socket id
 ```
     
     
@@ -88,9 +86,7 @@ Echo.channel('YourChannel').listen('Event', e => {
     console.dir(e)
 })
 
-setTimeout(() => {
-    Echo.socketId();
-}, 500)//half second for get socket id, only socket.io
+Echo.socketId(); // get socket id
 ```
 
 ## Options
@@ -105,7 +101,6 @@ These are each of the parameters that can go in the object options.
 | key | null | Your api key of Pusher App |
 | cluster | null | Your cluster of Pusher App |
 | auth | auth:{headers:{}} | Necesary in private an presence channel's with Authorization header |
-| debug | false | Enable debug only socket.io broadcaster |
 | namespace | App.Events | The namespace backend events |
     
 ## License
