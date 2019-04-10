@@ -151,7 +151,7 @@ export class SocketIoChannel extends Channel {
     unbind(): void {
         Object.keys(this.events).forEach(event => {
             this.events[event].forEach(callback => {
-                this.socket.removeListener(event, callback);
+                this.socket.off(event, callback);
             });
 
             delete this.events[event];

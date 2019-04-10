@@ -1,5 +1,10 @@
 # NativeScript Laravel-Echo
 
+[![npm](https://img.shields.io/npm/v/nativescript-laravel-echo.svg)](https://www.npmjs.com/package/nativescript-laravel-echo)
+[![npm](https://img.shields.io/npm/dt/nativescript-laravel-echo.svg?label=npm%20downloads)](https://www.npmjs.com/package/nativescript-laravel-echo)
+
+[![NPM](https://nodei.co/npm/nativescript-laravel-echo.png?downloads=true&downloadRank=true&stars=true)](https://npmjs.org/package/nativescript-laravel-echo)
+
 This is a [laravel-echo](https://github.com/laravel/echo/blob/master/src/channel/pusher-channel.ts) plugin for native applications made with nativescript
 
 For more information read [Laravel Broadcast](https://laravel.com/docs/master/broadcasting). 
@@ -32,9 +37,7 @@ class BroadcastServiceProvider extends ServiceProvider
 
 Describe your plugin installation steps. Ideally it would be something like:
 
-```javascript
-tns plugin add nativescript-laravel-echo
-```
+`$ tns plugin add nativescript-laravel-echo`
 
 ## Usage 
 
@@ -62,7 +65,19 @@ class Event implements ShouldBroadcast
 
 **Javascript**	
 ```javascript
-const TnsEcho = require('nativescript-laravel-echo').TnsEcho
+const TnsEcho = require('nativescript-laravel-echo').TnsEcho;
+
+const token = 'Asdsd3dsdsTytf';//Your token
+
+const options = {
+    //....
+    broadcaster: 'socket.io',// pusher,
+    headers: {
+        auth: {
+            bearer: `Bearer ${token}`
+        }
+    }
+}
 
 const Echo = new TnsEcho(options)
 
@@ -70,23 +85,51 @@ Echo.channel('YourChannel').listen('Event', e => {
     console.dir(e)
 })
 
-Echo.socketId(); // get socket id
+//presence channel for others
+const http = require('tns-core-modules/http');
+
+http.request({
+    //....
+    headers: {
+        //...
+        'X-Socket-Id': Echo.socketId() // get socket id
+    }
+});
 ```
     
     
 **TypeScript**	  
-```javascript
+```typescript
 import { TnsEcho } from 'nativescript-laravel-echo';
 
-private Echo: TnsEcho;
+const token = 'Asdsd3dsdsTytf';//Your token
+
+const options = {
+    //....
+    broadcaster: 'socket.io',// pusher,
+    headers: {
+        auth: {
+            bearer: `Bearer ${token}`
+        }
+    }
+}
 
 this.Echo = new TnsEcho(options)
 
-Echo.channel('YourChannel').listen('Event', e => {
+this.Echo.channel('YourChannel').listen('Event', e => {
     console.dir(e)
 })
 
-Echo.socketId(); // get socket id
+//presence channel for others
+import * as http from 'tns-core-modules/http';
+
+http.request({
+    //....
+    headers: {
+        //...
+        'X-Socket-Id': this.Echo.socketId() // get socket id
+    }
+})
 ```
 
 ## Options
