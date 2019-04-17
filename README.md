@@ -145,6 +145,8 @@ These are each of the parameters that can go in the object options.
 | cluster | null | Your cluster of Pusher App |
 | auth | auth:{headers:{}} | Necesary in private an presence channel's with Authorization header |
 | namespace | App.Events | The namespace backend events |
+| debug | false | Enable debug only socket.io broadcaster |
+| forceWebsockets | false | Force WebSockets |
     
 ## License
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.0
+### New features
+
+* Enable debug
+
+* Rolling back dependency [nativescript-socketio](https://www.npmjs.com/package/nativescript-socketio) to [nativescript-socket.io](https://www.npmjs.com/package/nativescript-socket.io)
+
 ## 1.0.3
 
 ### Fixes
@@ -10,7 +17,7 @@
 
 ### New features
 
-* Change dependency [nativescript-socket.io](https://www.npmjs.com/package/nativescript-socket.io) to [nativescript-socketio](https://www.npmjs.com/package/nativescript-socket.io) for support Swift v4 on xcode
+* Change dependency [nativescript-socket.io](https://www.npmjs.com/package/nativescript-socket.io) to [nativescript-socketio](https://www.npmjs.com/package/nativescript-socketio) for support Swift v4 on xcode
 
 ## 1.0.1
 

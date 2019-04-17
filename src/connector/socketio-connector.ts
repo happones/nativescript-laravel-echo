@@ -1,6 +1,6 @@
 import { Connector } from './connector';
 import { SocketIoChannel, SocketIoPrivateChannel, SocketIoPresenceChannel } from './../channel';
-import { SocketIO } from "nativescript-socketio";
+import * as SocketIO from "nativescript-socket.io";
 import * as application from 'tns-core-modules/application';
 
 /**
@@ -27,8 +27,10 @@ export class SocketIoConnector extends Connector {
      * @return void
      */
     connect(): void {
-        this.socket = new SocketIO(this.options.host, this.options);
-        this.socket.connect();
+        if (this.options.debug) {
+            SocketIO.enableDebug();
+        }
+        this.socket = SocketIO.connect(this.options.host, this.options);
         return this.socket;
     }
 

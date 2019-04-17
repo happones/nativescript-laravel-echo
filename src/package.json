@@ -1,6 +1,6 @@
 {
     "name": "nativescript-laravel-echo",
-    "version": "1.0.3",
+    "version": "1.1.0",
     "description": "A nativescript plugin for laravel-echo.",
     "main": "laravel-echo",
     "typings": "index.d.ts",
@@ -54,8 +54,8 @@
         "semver": "^5.5.0"
     },
     "dependencies": {
-        "nativescript-socketio": "^3.2.1",
-        "nativescript-websockets": "^1.5.0",
+        "nativescript-socket.io": "^0.10.1",
+        "nativescript-websockets": "^1.5.3",
         "pusher-nativescript": "^1.0.0"
     },
     "bootstrapper": "nativescript-plugin-seed"
