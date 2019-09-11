@@ -10,15 +10,15 @@ export class HelloWorldModel extends Observable {
     private broadcast: boolean;
     private endpoint: string;
     private token: string;
-    private Echo: TnsEcho;
     private host: string;
     private key: string;
+    public Echo: TnsEcho;
 
     constructor() {
         super();
-        this.channel = 'orders';
-        this.broadcast = true;
-        this.event = 'OrderShipped';
+        this.channel = 'chat.1';
+        this.broadcast = false;
+        this.event = 'NewMessage';
         this.types = ['channel', 'private', 'join'];
     }
 

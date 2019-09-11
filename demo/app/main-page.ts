@@ -13,3 +13,9 @@ export function onTap(args) {
     let page = args.object;
     page.bindingContext.connect();
 }
+
+export function onGetSocketId(args) {
+    let page = args.object;
+    let socketId = page.bindingContext.Echo.socketId();
+    alert(socketId);
+}

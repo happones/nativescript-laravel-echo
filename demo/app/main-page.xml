@@ -38,6 +38,9 @@
           <StackLayout>
             <Button text="Connect a Channel" tap="onTap" class="btn btn-primary"></Button>
           </StackLayout>
+          <StackLayout>
+            <Button text="Get socket id" tap="onGetSocketId" class="btn btn-primary"></Button>
+          </StackLayout>
         </StackLayout>
       </StackLayout>
     </StackLayout>

@@ -136,7 +136,12 @@ export class SocketIoConnector extends Connector {
      * @return {string}
      */
     socketId(): string {
-        return this.socket.socket.id();
+        if (application.ios) {
+            return this.socket.ios.sid;
+        }
+        else {
+            return this.socket.android.id();
+        }
     }
 
     /**
