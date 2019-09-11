@@ -1,6 +1,6 @@
 {
     "name": "nativescript-laravel-echo",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "description": "A nativescript plugin for laravel-echo.",
     "main": "laravel-echo",
     "typings": "index.d.ts",
