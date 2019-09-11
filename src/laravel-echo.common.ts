@@ -1,0 +1,110 @@
+import { Observable } from 'tns-core-modules/data/observable';
+import { EventFormatter } from './util';
+import { Channel, PresenceChannel } from './channel'
+import { PusherConnector, SocketIoConnector, NullConnector } from './connector';
+
+export class Common extends Observable {
+    /**
+     * The broadcasting connector.
+     *
+     * @type {object}
+     */
+    connector: any;
+
+    /**
+     * The Echo options.
+     *
+     * @type {array}
+     */
+    options: any;
+
+    /**
+     * Create a new class instance.
+     *
+     * @param  {object} options
+     */
+    constructor(options: any) {
+        super();
+        this.options = options;
+
+        if (this.options.broadcaster == 'pusher') {
+            this.connector = new PusherConnector(this.options);
+        } else if (this.options.broadcaster == 'socket.io') {
+            this.connector = new SocketIoConnector(this.options);
+        } else if (this.options.broadcaster == 'null') {
+            this.connector = new NullConnector(this.options);
+        }
+    }
+
+
+    /**
+     * Listen for an event on a channel instance.
+     */
+    listen(channel: string, event: string, callback: Function) {
+        return this.connector.listen(channel, event, callback);
+    }
+
+    /**
+     * Get a channel instance by name.
+     *
+     * @param  {string}  channel
+     * @return {object}
+     */
+    channel(channel: string): Channel {
+        return this.connector.channel(channel);
+    }
+
+    /**
+     * Get a private channel instance by name.
+     *
+     * @param  {string} channel
+     * @return {object}
+     */
+    private(channel: string): Channel {
+        return this.connector.privateChannel(channel);
+    }
+
+    /**
+     * Get a presence channel instance by name.
+     *
+     * @param  {string} channel
+     * @return {object}
+     */
+    join(channel: string): PresenceChannel {
+        return this.connector.presenceChannel(channel);
+    }
+
+    /**
+     * Leave the given channel.
+     *
+     * @param  {string} channel
+     */
+    leave(channel: string) {
+        this.connector.leave(channel);
+    }
+
+    /**
+     * Leave the given channel.
+     */
+    leaveChannel(channel: string): void {
+        this.connector.leaveChannel(channel);
+    }
+
+    /**
+     * Get the Socket ID for the connection.
+     *
+     * @return {string}
+     */
+    socketId(): string {
+        return this.connector.socketId();
+    }
+
+    /**
+     * Disconnect from the Echo server.
+     *
+     * @return void
+     */
+    disconnect(): void {
+        this.connector.disconnect();
+    }
+}
